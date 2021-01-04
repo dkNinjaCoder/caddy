@@ -1,10 +1,10 @@
-FROM caddy:latest-builder AS builder
+FROM caddy:alpine-builder AS builder
 
 RUN xcaddy build \
   --with github.com/greenpau/caddy-auth-jwt \
   --with github.com/greenpau/caddy-auth-portal \
 
 
-FROM caddy:latest
+FROM caddy:alpine
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
